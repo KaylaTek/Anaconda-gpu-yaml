@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: anaconda-gpu-ingress
+  namespace: anaconda-gpu
+spec:
+  rules:
+    - host: anacondagpu.dstk.ds.eng.nvl.army.mil
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: anaconda-gpu-service
+              servicePort: 80

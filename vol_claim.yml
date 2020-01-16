@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: anaconda-gpu-vc
+  namespace: anaconda-gpu
+spec:
+  volumeName: anaconda-gpu-vol
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20G
+kind: PersistentVolumeClaim
+metadata:
+  name: anaconda-data-lake-gpu-vc
+  namespace: anaconda-gpu
+spec:
+  volumeName: anaconda-data-lake-gpu-vol
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20G

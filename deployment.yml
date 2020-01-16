@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: anaconda-gpu-app
+  namespace: anaconda-gpu
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: anaconda-gpu-app
+    spec:
+      containers:
+      - name: python
+        image: dtr.ds.eng.nvl.army.mil/rhaskett.aiml/anaconda-container-gpu:0.0.1
+        ports:
+        - name: jupyter
+          containerPort: 8888
+        volumeMounts:
+          - mountPath: /app
+            name: anaconda-gpu-vc
+          - mountPath: /d
+            name: anaconda-data-lake-gpu-vc
+      volumes:
+      - name: anaconda-gpu-vc
+        persistentVolumeClaim:
+            claimName: anaconda-gpu-vc
+      - name: anaconda-data-lake-gpu-vc
+        persistentVolumeClaim:
+            claimName: anaconda-data-lake-gpu-vc
+      nodeSelector:
+        dstk: "yes"

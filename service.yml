@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: anaconda-gpu-service
+  namespace: anaconda-gpu
+  labels:
+    app: anaconda-gpu-app
+spec:
+  selector:
+    app: anaconda-gpu-app
+  type: NodePort
+  ports:
+  - name: anaconda-gpu-app
+    protocol: TCP
+    port: 80
+    targetPort: 8888
